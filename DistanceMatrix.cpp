@@ -3,6 +3,11 @@
 DistanceMatrix::DistanceMatrix()
 {}
 
+double DistanceMatrix::GetElement(int row, int col)
+{
+   return this -> matrix[row][col];
+}
+
 void DistanceMatrix::readFile()
 {
    std::string num;
@@ -32,9 +37,9 @@ void DistanceMatrix::readFile()
          
 void DistanceMatrix::displayMatrix()
 {
-   for(int i = 0; i < 20; i++)
+   for(int i = 0; i < NUM_ROWS; i++)
    {
-      for(int j = 0; j < 20; j++)
+      for(int j = 0; j < NUM_COLS; j++)
       {
          std::cout << std::setw(6) << matrix[i][j] << " ";
       }

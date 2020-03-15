@@ -9,10 +9,11 @@
 class DistanceMatrix{
 public:
    DistanceMatrix();
+   double GetElement(int row, int col);
    void readFile();
    void insertDistance(int distance);
    void displayMatrix();
-
+   
 private:
    static const int NUM_ROWS = 20;
    static const int NUM_COLS = 20;
