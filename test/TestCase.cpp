@@ -1,8 +1,8 @@
 #define CATCH_CONFIG_MAIN
 
 #include "catch/catch.hpp"
-#include "../DistanceMatrix.cpp"
-#include "../BruteForce.cpp"
+#include "../DistanceMatrix.hpp"
+#include "../BruteForce.hpp"
 
 
 TEST_CASE("Testing the formation of the adjacency matrix")
