@@ -6,7 +6,7 @@ CC = g++
 #  -Wall turns on most, but not all, compiler warnings
 CFLAGS  = -std=c++11 -g -Wall
 
-OBJECTS = ChainedHashTable.o EncryptPasswords.o PasswordCreator.o User.o
+OBJECTS = BruteForce.o DistanceMatrix.o
 HEADERS := $(shell find . -path ./test -prune -o -name "*.hpp" -print)
 
 main: main.o $(OBJECTS)
@@ -15,10 +15,10 @@ main: main.o $(OBJECTS)
 $(OBJECTS): $(HEADERS)
 
 testBuild: $(OBJECTS)
-	$(CC) $(CFLAGS) -Itest/catch/catch.hpp -o test/passwordCreatorTest $(OBJECTS) test/passwordCreatorTest.cpp
+	$(CC) $(CFLAGS) -Itest/catch/catch.hpp -o test/TestCase $(OBJECTS) test/TestCase.cpp
 
 test: clean testBuild
-	test/passwordCreatorTest --success
+	test/TestCase --success
 
 clean:
-	$(RM) *.o *.gch core main test/passwordCreatorTest
+	$(RM) *.o *.gch core main test/TestCase
