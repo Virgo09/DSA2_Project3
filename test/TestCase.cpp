@@ -17,11 +17,23 @@ TEST_CASE("Testing the formation of the adjacency matrix")
 
 TEST_CASE("Confirming the Brute Force class works properly")
 {
-   BruteForce* obj = new BruteForce(3);
+   BruteForce* obj = new BruteForce(20);
    
-   std::cout << obj -> GetBestPath()[0];   
-   std::cout << obj -> GetBestPath()[1];
-   std::cout << obj -> GetBestPath()[2];
+   std::cout << obj -> GetBestPath()[0] << std::endl;
+   std::cout << obj -> GetBestPath()[1] << std::endl;
+   std::cout << obj -> GetBestPath()[2] << std::endl;
+   std::cout << obj -> GetBestPath()[3] << std::endl;
+   //std::cout << obj -> GetBestPath()[4] << std::endl;
+   //std::cout << obj -> GetBestPath()[5] << std::endl;
+   //std::cout << obj -> GetBestPath()[6] << std::endl;
+   //std::cout << obj -> GetBestPath()[7] << std::endl;
+   //std::cout << obj -> GetBestPath()[8] << std::endl;
+   //std::cout << obj -> GetBestPath()[9] << std::endl;
+   //std::cout << obj -> GetBestPath()[10] << std::endl;
+   //std::cout << obj -> GetBestPath()[11] << std::endl;
+   //std::cout << obj -> GetBestPath()[12] << std::endl;
+   //std::cout << obj -> GetBestPath()[13] << std::endl;
+   //std::cout << obj -> GetBestPath()[2] << std::endl;
 }
 // Compile & run:
 // make clean test

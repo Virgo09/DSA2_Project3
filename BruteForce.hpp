@@ -1,6 +1,7 @@
-#ifndef BRUTEFORCE_HPP
+ #ifndef BRUTEFORCE_HPP
 #define BRUTEFORCE_HPP
 #include <vector>
+#include <float.h>
 #include "DistanceMatrix.hpp"
 
 class BruteForce
@@ -13,7 +14,7 @@ public:
    std::vector<double> GetBestPath();
 private:
    DistanceMatrix DM;
-   double bestPathSum = 9000000.0;
+   double bestPathSum = DBL_MAX;
    double sumOfTraversal = 0.0;
    int numCities;
    std::vector<double> currentPath;

@@ -10,6 +10,53 @@ BruteForce::BruteForce(int numCities)
 
 void BruteForce::traverse(int previous)
 {
+   std::cout << previous << std::endl;
+   //Check that we're not doing the same row again
+   if(visited[previous])
+   {
+      return;
+   }
+   
+   //Set the previous location as visited
+   visited[previous] = true;
+   
+   //Check that we haven't reached all cities
+   if(currentPath.size() == numCities + 1)
+   {
+      return;
+   }
+   
+   for(int i = 0; i < numCities; i++)
+   {
+      std::cout << i << std::endl;
+   
+      if(previous != i && !visited[i])
+      {
+         currentPath.push_back(DM.GetElement(previous,i));
+         traverse(i); 
+      }
+      if(currentPath.size() == numCities - 1 && i != 0)
+      {
+         currentPath.push_back(DM.GetElement(i,0));
+         break;
+      }
+   }      
+   //If there is a full path set and it is shorter than the last
+   //full traversal, make it the best path and store it
+   if(currentPath.size() == numCities)
+   {
+      sumOfTraversal = sumTraversal();
+      if(sumOfTraversal < bestPathSum)
+      {
+         bestPathSum = sumOfTraversal;
+         bestPath = currentPath;
+      }
+   }
+   visited[previous] = false;
+   currentPath.pop_back();
+   return;
+
+/*
    std::cout << "13" << std::endl;
    if(visited[previous])
    {
@@ -90,6 +137,7 @@ void BruteForce::traverse(int previous)
    
    visited[previous] = false;
    currentPath.pop_back();
+   */
 }
 
 double BruteForce::sumTraversal()
