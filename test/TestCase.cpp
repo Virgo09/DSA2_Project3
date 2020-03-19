@@ -17,11 +17,9 @@ TEST_CASE("Testing the formation of the adjacency matrix")
 
 TEST_CASE("Confirming the Brute Force class works properly")
 {
-   BruteForce* obj = new BruteForce(3);
-   
-   std::cout << obj -> GetBestPath()[0];   
-   std::cout << obj -> GetBestPath()[1];
-   std::cout << obj -> GetBestPath()[2];
+   BruteForce* obj = new BruteForce(8);
+  
+   obj -> printBestS();
 }
 // Compile & run:
 // make clean test

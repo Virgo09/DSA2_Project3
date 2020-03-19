@@ -4,102 +4,115 @@ BruteForce::BruteForce(int numCities)
 {
    this -> numCities = numCities;
    DM.readFile();
-   visited.resize(numCities, false);
-   traverse();
+   
+   for(int i = 1; i <= numCities; i++)
+   {
+      s.push_back(i);
+   }
+   s.push_back(0);
+   
+   int perms = 1;
+   for(int i = numCities; i > 0; i--)
+   {
+      perms *= i;
+   }
+   
+   traverse(perms);
 }
 
-void BruteForce::traverse(int previous)
+void BruteForce::traverse(int permsThisCall)
 {
-   std::cout << "13" << std::endl;
-   if(visited[previous])
+   int m, k, p , q, i, j;
+
+   for(j = 0; j < permsThisCall; j++)
    {
-      return;
+      for( i = 0; i < numCities - 1; i++)
+      {
+         currentPath.push_back(DM.GetElement(s[i]-1,s[i+1]-1));
+         if(i == numCities - 2)
+         {
+            currentPath.push_back(DM.GetElement(s[i+1]-1,s[0]-1));
+         }
+      }
+      sumOfTraversal = sumTraversal();
+      if(sumOfTraversal < bestPathSum)
+      {
+         bestS = s;
+         bestPathSum = sumOfTraversal;
+         bestPath = currentPath;
+      }
+   //printS();
+      m = numCities - 2;
+      while(s[m] > s[m + 1])
+      {
+         m = m - 1;
+      }
+      k = numCities - 1;
+      while(s[m] > s[k])
+      {
+         k = k - 1;
+      }
+      swap(m,k);
+      p = m + 1;
+      q = numCities - 1;
+      while( p < q)
+      {
+         swap(p,q);
+         p++;
+         q--;
+      }
+    
+      while(currentPath.size())
+      {
+         currentPath.pop_back();
+      }  
    }
-   
-   std::cout << "18" << std::endl;
-   
-   if(currentPath.size() == numCities)
+}  
+
+void BruteForce::swap(int m, int k)
+{
+   int temp;
+   temp = s[m];
+   s[m] = s[k];
+   s[k] = temp;
+}
+
+void BruteForce::printS()
+{
+   for(int i = 0; i < numCities; i++)
    {
-      return;
+      std::cout << s[i] << " -> ";
    }
-   
-   std::cout << "23" << std::endl;
-   
-   int next;
-   int row = previous / numCities;
-   int col = previous % numCities;
-   
-   std::cout << DM.GetElement(row,col) << std::endl;
-   
-   if(row != col)
+   std::cout << s[0] << ":" << std::endl;
+   for(int i = 0; i < numCities-1; i++)
    {
-      currentPath.push_back(DM.GetElement(row,col)); 
+      std::cout << currentPath[i] << " -> ";
    }
-   
-   std::cout << "32" << std::endl;
-   
-   visited[previous] = true;
-   
-   next = previous;
-   next += 1;
-   if(next % numCities == 0)
+   std::cout << currentPath[numCities - 1] << std::endl;
+}
+
+void BruteForce::printBestS()
+{
+   for(int i = 0; i < numCities; i++)
    {
-      next -= numCities;
+      std::cout << bestS[i] << " -> ";
    }
-   traverse(next);
-   
-   std::cout << "42" << std::endl;
-   
-   next = previous;
-   next += numCities;
-   if(next >= numCities * numCities - 1)
+   std::cout << bestS[0] << ":" << std::endl;
+   for(int i = 0; i < numCities-1; i++)
    {
-      next -= numCities * numCities;
+      std::cout << bestPath[i] << " -> ";
    }
-   traverse(next);
-   
-   std::cout << "50" << std::endl;
-   
-   next = previous;
-   next -= 1;
-   if(next % numCities == numCities - 1 || next == -1)
-   {
-      next += numCities;
-   }
-   traverse(next);
-   
-   std::cout << "58" << std::endl;
-   
-   next = previous;
-   next -= numCities;
-   if(next < 0)
-   {
-      next += numCities * numCities;
-   }
-   traverse(next);
-   
-   std::cout << "66" << std::endl;
-   
-   if(sumTraversal() < bestPathSum)
-   {
-      bestPathSum = sumOfTraversal;
-      bestPath = currentPath;
-   }
-   
-   std::cout << "72" << std::endl;
-   
-   visited[previous] = false;
-   currentPath.pop_back();
+   std::cout << bestPath[numCities - 1] << std::endl;
 }
 
 double BruteForce::sumTraversal()
 {
    double sum = 0;
-   for(int i = 0; i < numCities; i++)
+   for(int i = 0; i <= numCities; i++)
    {
       if(currentPath[i] == 0.0)
       {
-         return 99999.9;
+         return DBL_MAX;
       }
       sum += currentPath[i];
    }
@@ -109,4 +122,9 @@ double BruteForce::sumTraversal()
 std::vector<double> BruteForce::GetBestPath()
 {
    return this -> bestPath;
+}
+
+double BruteForce::GetBestSum()
+{
+   return this -> bestPathSum;
 }
