@@ -4,6 +4,69 @@ BruteForce::BruteForce(int numCities)
 {
    this -> numCities = numCities;
    DM.readFile();
+<<<<<<< HEAD
+=======
+   visited.resize(numCities, false);
+   traverse();
+}
+
+void BruteForce::traverse(int previous)
+{
+   std::cout << previous << std::endl;
+   //Check that we're not doing the same row again
+   if(visited[previous])
+   {
+      return;
+   }
+   
+   //Set the previous location as visited
+   visited[previous] = true;
+   
+   //Check that we haven't reached all cities
+   if(currentPath.size() == numCities + 1)
+   {
+      return;
+   }
+   
+   for(int i = 0; i < numCities; i++)
+   {
+      std::cout << i << std::endl;
+   
+      if(previous != i && !visited[i])
+      {
+         currentPath.push_back(DM.GetElement(previous,i));
+         traverse(i); 
+      }
+      if(currentPath.size() == numCities - 1 && i != 0)
+      {
+         currentPath.push_back(DM.GetElement(i,0));
+         break;
+      }
+   }      
+   //If there is a full path set and it is shorter than the last
+   //full traversal, make it the best path and store it
+   if(currentPath.size() == numCities)
+   {
+      sumOfTraversal = sumTraversal();
+      if(sumOfTraversal < bestPathSum)
+      {
+         bestPathSum = sumOfTraversal;
+         bestPath = currentPath;
+      }
+   }
+   visited[previous] = false;
+   currentPath.pop_back();
+   return;
+
+/*
+   std::cout << "13" << std::endl;
+   if(visited[previous])
+   {
+      return;
+   }
+   
+   std::cout << "18" << std::endl;
+>>>>>>> d4b22433f813883bf6a87d6003e06078883cf3dd
    
    for(int i = 1; i <= numCities; i++)
    {
@@ -102,7 +165,16 @@ void BruteForce::printBestS()
    {
       std::cout << bestPath[i] << " -> ";
    }
+<<<<<<< HEAD
    std::cout << bestPath[numCities - 1] << std::endl;
+=======
+   
+   std::cout << "72" << std::endl;
+   
+   visited[previous] = false;
+   currentPath.pop_back();
+   */
+>>>>>>> d4b22433f813883bf6a87d6003e06078883cf3dd
 }
 
 double BruteForce::sumTraversal()

@@ -1,4 +1,4 @@
-#ifndef BRUTEFORCE_HPP
+ #ifndef BRUTEFORCE_HPP
 #define BRUTEFORCE_HPP
 #include <vector>
 #include <float.h>
