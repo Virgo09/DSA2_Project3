@@ -31,14 +31,15 @@ void BruteForce::traverse(int permsThisCall)
             currentPath.push_back(DM.GetElement(s[i+1]-1,s[0]-1));
          }
       }
+
       sumOfTraversal = sumTraversal();
       if(sumOfTraversal < bestPathSum)
       {
-         bestS = s;
+         bestS.assign(s.begin(),s.end());
          bestPathSum = sumOfTraversal;
-         bestPath = currentPath;
+         bestPath.assign(currentPath.begin(),currentPath.end());
       }
-   //printS();
+   
       m = numCities - 2;
       while(s[m] > s[m + 1])
       {
@@ -77,7 +78,7 @@ void BruteForce::swap(int m, int k)
 double BruteForce::sumTraversal()
 {
    double sum = 0;
-   for(int i = 0; i <= numCities; i++)
+   for(int i = 0; i < numCities; i++)
    {
       if(currentPath[i] == 0.0)
       {
