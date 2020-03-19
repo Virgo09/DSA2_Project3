@@ -1,7 +1,9 @@
 #include "DistanceMatrix.hpp"
 
 DistanceMatrix::DistanceMatrix()
-{}
+{
+readFile();
+}
 
 double DistanceMatrix::GetElement(int row, int col)
 {

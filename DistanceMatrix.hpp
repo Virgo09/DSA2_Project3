@@ -5,10 +5,6 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-<<<<<<< HEAD
-
-=======
->>>>>>> d4b22433f813883bf6a87d6003e06078883cf3dd
 
 class DistanceMatrix{
 public:

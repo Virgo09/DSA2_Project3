@@ -12,9 +12,9 @@ public:
    void swap(int m, int k);
    void printS();
    void printBestS();
+   double GetBestSum();
    double sumTraversal();
    double sumBestPath();
-   double GetBestSum();
    std::vector<double> GetBestPath();
 private:
    DistanceMatrix DM;
@@ -25,6 +25,7 @@ private:
    std::vector<int> bestS;
    std::vector<double> currentPath;
    std::vector<double> bestPath;
+
 };
 
 #endif
