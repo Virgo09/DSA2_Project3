@@ -5,11 +5,12 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <vector>
 
 class DistanceMatrix{
 public:
    DistanceMatrix();
-   double GetElement(int row, int col);
+   std::vector<std::vector<double>> GetMatrix();
    void readFile();
    void insertDistance(int distance);
    void displayMatrix();
@@ -17,7 +18,7 @@ public:
 private:
    static const int NUM_ROWS = 20;
    static const int NUM_COLS = 20;
-   double matrix[NUM_ROWS][NUM_COLS];
+   std::vector<std::vector<double>> matrix;
    std::ifstream distanceFile;
 };
 

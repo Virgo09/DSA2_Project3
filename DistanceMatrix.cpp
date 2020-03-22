@@ -2,12 +2,20 @@
 
 DistanceMatrix::DistanceMatrix()
 {
-readFile();
+   //matrix(NUM_ROWS, std::vector<double>(NUM_COLS, 0.0));
+   matrix.resize(NUM_ROWS);
+   for(int i = 0; i < NUM_COLS; i++)
+   {
+      matrix[i].resize(NUM_COLS);
+   }
+   
+
+   readFile();
 }
 
-double DistanceMatrix::GetElement(int row, int col)
+std::vector<std::vector<double>> DistanceMatrix::GetMatrix()
 {
-   return this -> matrix[row][col];
+   return this -> matrix;
 }
 
 void DistanceMatrix::readFile()
@@ -27,7 +35,7 @@ void DistanceMatrix::readFile()
       {
          if(i == j)
          {
-            matrix[i][j] = 0.0;
+            matrix[i].push_back(0.0);
          }
          else
          {
@@ -48,3 +56,4 @@ void DistanceMatrix::displayMatrix()
       std::cout << std::endl;
    }
 }
+

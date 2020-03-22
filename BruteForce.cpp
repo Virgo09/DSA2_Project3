@@ -1,9 +1,9 @@
 #include "BruteForce.hpp"
 
-BruteForce::BruteForce(int numCities)
+BruteForce::BruteForce(int numCities, std::vector<std::vector<double>> &matrix)
 {
    this -> numCities = numCities;
-   DM.readFile();
+   this -> matrix = matrix;
    for(int i = 1; i <= numCities; i++)
    {
       s.push_back(i);
@@ -21,17 +21,19 @@ void BruteForce::traverse(int permsThisCall)
 {
    int m, k, p , q, i, j;
 
+   start = std::chrono::steady_clock::now();
+   
    for(j = 0; j < permsThisCall; j++)
    {
       for( i = 0; i < numCities - 1; i++)
       {
-         currentPath.push_back(DM.GetElement(s[i]-1,s[i+1]-1));
+         currentPath.push_back(matrix[s[i]-1][s[i+1]-1]);
          if(i == numCities - 2)
          {
-            currentPath.push_back(DM.GetElement(s[i+1]-1,s[0]-1));
+            currentPath.push_back(matrix[s[i+1]-1][s[0]-1]);
          }
       }
-
+   
       sumOfTraversal = sumTraversal();
       if(sumOfTraversal < bestPathSum)
       {
@@ -65,6 +67,9 @@ void BruteForce::traverse(int permsThisCall)
          currentPath.pop_back();
       }  
    }
+   end = std::chrono::steady_clock::now();
+
+   time_span = std::chrono::duration_cast<std::chrono::duration<double>>(end - start);
 }
 
 void BruteForce::swap(int m, int k)
@@ -121,4 +126,14 @@ void BruteForce::printBestS()
 std::vector<double> BruteForce::GetBestPath()
 {
    return this -> bestPath;
+}
+
+std::chrono::duration<double> BruteForce::GetTimeSpan()
+{
+   return this -> time_span;
+}
+
+double BruteForce::GetBestSum()
+{
+   return this -> bestPathSum;
 }
