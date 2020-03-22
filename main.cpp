@@ -1,6 +1,6 @@
-#include "BruteForce.cpp"
-#include "Genetic.cpp"
-#include "DistanceMatrix.cpp"
+#include "BruteForce.hpp"
+#include "Genetic.hpp"
+#include "DistanceMatrix.hpp"
 
 int main()
 {
@@ -26,14 +26,17 @@ int main()
    
    BruteForce* BF = new BruteForce(numCities, matrix);
    Genetic* GM = new Genetic(numCities, numTours, numGens, percentMutations, matrix);
-   DM.displayMatrix();
-   std::cout << "The best order of cities to travel in is:\n";
-   BF -> printBestS();
-   std::cout << "The result from the genetic algorith is:\n";
-   GM -> PrintElite();
+   
+   std::cout << "The number of cities run was: " << numCities << std::endl;
+   
+   std::cout << "The optimal cost is: " << BF -> GetBestSum() << std::endl;
+   
    std::cout << "It took " << BF -> GetTimeSpan().count() << " seconds to complete the Brute Force\n";
+   
+   std::cout << "The Genetic Algorithm found a cost of: " << GM -> GetEliteSum() << std::endl;
 
    std::cout << "It took " << GM -> GetTimeSpan().count() << " seconds to complete the Genetic\n";
-   std::cout << "And the percent of optimal is " << GM -> GetEliteSum() / BF -> GetBestSum() * 100 << "% of optimal\n";
+   
+   std::cout << "And the percent of optimal is " << GM -> GetEliteSum() / BF -> GetBestSum() * 100 << "%\n";
    return 0;
 }
