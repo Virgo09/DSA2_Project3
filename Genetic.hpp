@@ -6,7 +6,17 @@
 #include <ratio>
 #include <chrono>
 #include <iostream>
+/***************************************************************
+  Student Name: Justin Wymore
+  File Name: Genetic
+  Assignment number 3
 
+  This class will take a passed in matrix and logically try a
+  numerous combination of nodes to find the shortest route possible
+  starting at most note and ending at the same node
+  The margin of error will increase as the number of cities increases
+  unless the other 3 parameters are sufficiantly increased as well
+***************************************************************/
 class Genetic
 {
 public:

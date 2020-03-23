@@ -6,7 +6,15 @@
 #include <ratio>
 #include <chrono>
 #include <iostream>
+/***************************************************************
+  Student Name: Justin Wymore
+  File Name: BruteForce
+  Assignment number 3
 
+  This class will take a passed in matrix and forcefully try
+  every combination of nodes to find the shortest route possible
+  starting at every note and ending at the same node
+***************************************************************/
 class BruteForce
 {
 public:
